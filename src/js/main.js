@@ -10,19 +10,15 @@ import SimpleBar from 'simplebar';
   }
 })(function() {
   const query = getQueryParameters();
-  const text = JSON.stringify(query, null, 2);
-  const el$ = document.querySelector('.line')
-  el$.innerHTML = sanitize(text);
+  const text = `gcloud compute forwarding-rules create kubernetes-forwarding-rule \\
+  --address KUBERNETES_PUBLIC_ADDRESS \\
+  --ports 6443 \\
+  --region $(gcloud config get-value compute/region) \\
+  --target-pool kubernetes-target-pool`
+  const el$ = document.querySelector('pre code')
+  el$.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');  //sanitize(text);
   new SimpleBar(document.querySelector('.content'));
 });
-
-function sanitize(text) {
-  return text.split('\n').map(line => {
-    line = line.replace(/ /g, '&nbsp;')
-    line = `<div class="segment">${line}</div>`;
-    return line;
-  }).join('');
-}
 
 function getQueryParameters() {
   var search = location.search.substring(1);

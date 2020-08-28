@@ -4,6 +4,7 @@
 
 html {
   font-size: 18px;
+  color: white;
 }
 
 body {
@@ -29,7 +30,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   position: relative;
   text-align: center;
-  color: white;
   line-height: 2rem;
   width: 100%;
 }
@@ -72,8 +72,7 @@ body {
 
 .content {
   padding: 0.5rem;
-  color: white;
-  max-height: calc(90vh - 2rem);
+  min-height: calc(90vh - 2rem);
 }
 
 .content .command {
@@ -84,4 +83,14 @@ body {
 .content .command .prompt {
   color: rgb(187, 187, 187);
   margin-right: 0.5rem;
+}
+
+pre {
+  margin: 0;
+  font-size: 1rem;
+}
+
+pre code {
+  font-size: 1rem;
+  font-family: 'Fira Mono', monospace;
 }

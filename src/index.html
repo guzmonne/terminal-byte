@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title></title>
+  
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,9 +19,12 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Roboto&display=swap" rel="stylesheet">
 
+
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/custom.css">
+  
+  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-funky.min.css">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -38,12 +42,16 @@
     <div class="content">
       <div class="command">
         <div class="prompt">$</div>
-        <div class="line"></div>
+        <pre><code></code></pre>
       </div>
       <div class="output"></div>
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-bash.min.js" integrity="sha512-undB7JF5cHZkHEnrvpIR6vpLG/3YR5LeDjvGKMDvr5WD7U6Xrkhymp8asv7ausEICQorcKjq3BIjz0vI5yJCnA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
   <script src="js/vendor/modernizr-3.11.3.min.js"></script>
   <script src="js/main.js"></script>
 
