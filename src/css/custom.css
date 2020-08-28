@@ -86,8 +86,25 @@ body {
 }
 
 pre {
-  margin: 0;
   font-size: 1rem;
+  width: 100%;
+  max-height: calc(90vh - 3.5rem);
+  min-height: calc(90vh - 3.5rem);
+}
+
+pre code {
+  background-color: transparent;
+}
+
+:not(pre)>code[class*=language-], pre[class*=language-] {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.simplebar-content:before, .simplebar-content:after {
+  content: none;
+  display: table;
 }
 
 pre code {
