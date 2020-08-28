@@ -1,0 +1,11 @@
+{
+  "name": "terminal-byte",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:h5bp/html5-boilerplate.git",
+  "author": "Guzman Monne <guzmonne@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
+}
