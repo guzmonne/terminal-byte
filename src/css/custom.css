@@ -17,7 +17,7 @@ body {
   width: 90vw;
   height: 90vh;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -25,7 +25,7 @@ body {
 .taskbar {
   min-height: 2rem;
   display: flex;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
   background-color: rgba(0, 0, 0, 0.5);
   position: relative;
   text-align: center;
@@ -73,6 +73,7 @@ body {
 .content {
   padding: 0.5rem;
   color: white;
+  max-height: calc(90vh - 2rem);
 }
 
 .content .command {

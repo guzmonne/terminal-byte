@@ -8,9 +8,12 @@
   "devDependencies": {
     "parcel": "^1.12.4"
   },
-	"scripts": {
-		"dev": "parcel src/index.html",
+  "scripts": {
+    "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "postbuild": "cp src/browserconfig.xml src/favicon.ico src/humans.txt src/LICENSE.txt src/robots.txt dist"
-	}
+  },
+  "dependencies": {
+    "simplebar": "^6.0.0-beta.2"
+  }
 }

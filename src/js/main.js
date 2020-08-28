@@ -1,9 +1,59 @@
-const text = `kubectl config set-context gce \\
-  --user=cluster-admin \\
-  --namespace=foo \\
-  && kubectl config use-context gce`
+import 'simplebar/dist/simplebar.css';
+import SimpleBar from 'simplebar';
 
-document.querySelector('.line').innerHTML = sanitize(text);
+(function ready(fn) {
+  try {
+    if (document.readyState != 'loading') fn(); 
+    else document.addEventListener('DOMContentLoaded', fn);
+  } catch (err) {
+    console.error(err);
+  }
+})(function() {
+  const text = `{
+
+    cat > ca-config.json <<EOF
+    {
+      "signing": {
+        "default": {
+          "expiry": "8760h"
+        },
+        "profiles": {
+          "kubernetes": {
+            "usages": ["signing", "key encipherment", "server auth", "client auth"],
+            "expiry": "8760h"
+          }
+        }
+      }
+    }
+    EOF
+    
+    cat > ca-csr.json <<EOF
+    {
+      "CN": "Kubernetes",
+      "key": {
+        "algo": "rsa",
+        "size": 2048
+      },
+      "names": [
+        {
+          "C": "US",
+          "L": "Portland",
+          "O": "Kubernetes",
+          "OU": "CA",
+          "ST": "Oregon"
+        }
+      ]
+    }
+    EOF
+    
+    cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+    
+    }`
+  
+  const el$ = document.querySelector('.line')
+  el$.innerHTML = sanitize(text);
+  new SimpleBar(document.querySelector('.content'));
+});
 
 function sanitize(text) {
   return text.split('\n').map(line => {
