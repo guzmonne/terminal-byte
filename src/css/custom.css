@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  background: linear-gradient(45deg, #1CB5E0 0%, #000851 100%);
+  min-height: 100vh;
+  padding: 5vh 5vw;
+  font-family: 'Fira Mono', monospace;
+}
+
+.window {
+  width: 90vw;
+  height: 90vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskbar {
+  min-height: 2rem;
+  display: flex;
+  border-radius: 1rem 1rem 0 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  text-align: center;
+  color: white;
+  line-height: 2rem;
+  width: 100%;
+}
+
+.buttons {
+  position: absolute;
+  top: 0.1rem;
+  left: 1rem;
+}
+
+.buttons div {
+  border-width: 0;
+  border-style: solid;
+  border-color: #e2e8f0;
+  border-radius: 9999px;
+  display: inline-block;
+  height: .75rem;
+  margin-right: .15rem;
+  width: .75rem;
+}
+
+.buttons .close {
+  background-color: rgba(245,101,101,1);
+}
+
+.buttons .minimize {
+  background-color: rgba(250,240,137,1);
+}
+
+.buttons .maximize {
+  background-color: rgba(104,211,145,1);
+}
+
+.title {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
