@@ -69,3 +69,18 @@ body {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
 }
+
+.content {
+  padding: 0.5rem;
+  color: white;
+}
+
+.content .command {
+  display: flex;
+  flex-direction: row;
+}
+
+.content .command .prompt {
+  color: rgb(187, 187, 187);
+  margin-right: 0.5rem;
+}
