@@ -88,12 +88,16 @@ body {
 pre {
   font-size: 1rem;
   width: 100%;
-  max-height: calc(90vh - 3.5rem);
-  min-height: calc(90vh - 3.5rem);
+  max-height: calc(90vh - 3rem);
+  min-height: calc(90vh - 3rem);
 }
 
 pre code {
   background-color: transparent;
+}
+
+code[class*=language-], pre[class*=language-] {
+  color: white;
 }
 
 :not(pre)>code[class*=language-], pre[class*=language-] {
@@ -101,6 +105,8 @@ pre code {
   padding: 0;
   background-color: transparent;
 }
+
+
 
 .simplebar-content:before, .simplebar-content:after {
   content: none;
