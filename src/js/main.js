@@ -15,8 +15,8 @@ import SimpleBar from 'simplebar';
   --ports 6443 \\
   --region $(gcloud config get-value compute/region) \\
   --target-pool kubernetes-target-pool`
-  const el$ = document.querySelector('pre code')
-  el$.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');  //sanitize(text);
+  const el$ = document.querySelector('pre code');
+  el$.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');
   new SimpleBar(document.querySelector('.content'));
 });
 

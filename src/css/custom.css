@@ -88,6 +88,11 @@ body {
 pre {
   margin: 0;
   font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  overflow: scoll;
 }
 
 pre code {
