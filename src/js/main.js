@@ -1,5 +1,6 @@
 import 'simplebar/dist/simplebar.css';
 import SimpleBar from 'simplebar';
+import getQueryParameters from './getQueryParameters.js';
 
 (function ready(fn) {
   try {
@@ -19,8 +20,3 @@ import SimpleBar from 'simplebar';
   el$.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');
   new SimpleBar(document.querySelector('.content'));
 });
-
-function getQueryParameters() {
-  var search = location.search.substring(1);
-  return JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
-}
