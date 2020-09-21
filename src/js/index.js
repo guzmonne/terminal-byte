@@ -1,5 +1,6 @@
 import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
 import 'simplebar/dist/simplebar.css';
+import './plugins.js';
 
 const app = window.app = App();
 
@@ -107,7 +108,7 @@ function App() {
     melloYellow: ['#f8ff00', '#3ad59f'],
     dustyCactus: ['#fcff9e', '#c67700']
   }
-
+  // Self object
   const self = {
     init,
     ready,
@@ -116,7 +117,8 @@ function App() {
     getRandomGradient,
     getSwatches,
   };
-
+  
+  // Return
   return self;
 
   // Functions
