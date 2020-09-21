@@ -83,10 +83,10 @@ function App() {
    * });
    * ```
    */
-  function ready(fn) {
+  function ready(callback) {
     try {
-      if (document.readyState != 'loading') fn(); 
-      else document.addEventListener('DOMContentLoaded', self.init(fn));
+      if (document.readyState != 'loading') self.init(callback); 
+      else document.addEventListener('DOMContentLoaded', self.init(callback));
     } catch (err) {
       console.error(err);
     }
