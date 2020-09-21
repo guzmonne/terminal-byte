@@ -1,6 +1,8 @@
 window.DEFAULTS = {
   text: 'WW91IG11c3QgY29uZmlndXJlIHRoZSAidGV4dCIgcXVlcnkgYXR0cmlidXRl',
+  minSize: 12,
   size: 18,
+  maxSize: 24,
   gradient: 'random',
   gradientRot: 90,
 };

@@ -12,6 +12,7 @@ body {
   min-height: 100vh;
   padding: 5vh 5vw;
   font-family: 'Fira Mono', monospace;
+  overflow: hidden;
 }
 
 .window {
@@ -92,7 +93,7 @@ pre {
   border: none;
   padding: 0;
   box-shadow: none;
-  overflow: scoll;
+  line-height: 1.4;
 }
 
 pre code {
