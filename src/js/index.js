@@ -18,9 +18,6 @@ app.ready(function () {
     const { text } = app.options;
     app.$code.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');
   }
-
-  // Set SimpleBar
-  //new SimpleBar(app.$content);
 });
 
 /**
