@@ -1,7 +1,7 @@
 import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
 import 'simplebar/dist/simplebar.css';
 
-const app = App();
+const app = window.app = App();
 
 app.ready(function () {
   // Set the font-size on the HTML Element. This will modify how all
@@ -14,11 +14,65 @@ app.ready(function () {
   document.body.style.background = `linear-gradient(${gradientRot}deg, ${colorA} 0%, ${colorB} 100%)`;
 
   // Apply highlights to the code if the `highlight` flag is defined.
+  const { text } = app.options;
   if (!!app.options.highlight) {
-    const { text } = app.options;
     app.$code.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');
+  } else {
+    app.$code.textContent = text;
+  }
+
+  // Fit the lines to the size of the window if the `fit` flag is set.
+  if (!!app.options.fit) {
+    function fitLinesSize() {
+      if (app.getWidth(app.$lines) > app.getWidth(app.$command)) {
+        shrinkLines();
+      } else {
+        expandLines();
+      }
+    }
+    fitLinesSize();
   }
 });
+
+function shrinkLines() {
+  if (app.getWidth(app.$lines) < app.getWidth(app.$command)) {
+    return;
+  }
+  const { size, minSize } = app.options;
+  const fontSize = parseInt(app.$code.style.fontSize, 10);
+  if (isNaN(fontSize)) {
+    console.log('fontSize is empty');
+    app.$code.style.fontSize = size + 'px';
+  } else if (fontSize > minSize) {
+    console.log('fontSize is too big');
+    app.$code.style.fontSize = (fontSize - 1) + 'px';
+    app.$prompt.style.fontSize = (fontSize - 1) + 'px';
+  } else {
+    console.log('fontSize is smaller or equal to minSize');
+    return;
+  }
+  shrinkLines();
+}
+
+function expandLines() {
+  if (app.getWidth(app.$lines) > app.getWidth(app.$command)) {
+    return;
+  }
+  const { size, maxSize } = app.options;
+  const fontSize = parseInt(app.$code.style.fontSize, 10);
+  if (isNaN(fontSize)) {
+    console.log('fontSize is empty');
+    app.$code.style.fontSize = size + 'px';
+  } else if (fontSize < maxSize) {
+    console.log('fontSize is too small');
+    app.$code.style.fontSize = (fontSize + 1) + 'px';
+    app.$prompt.style.fontSize = (fontSize + 1) + 'px';
+  } else {
+    console.log('fontSize is bigger or equal to maxSize');
+    return;
+  }
+  expandLines();
+}
 
 /**
  * @class
@@ -29,10 +83,11 @@ function App() {
     text: 'WW91IG11c3QgY29uZmlndXJlIHRoZSAidGV4dCIgcXVlcnkgYXR0cmlidXRl',
     minSize: 12,
     size: 18,
-    maxSize: 24,
+    maxSize: 36,
     gradient: 'random',
-    gradientRot: 90,
-    highlight: true,
+    gradientRot: Math.round(Math.random() * 180, 0),
+    highlight: false,
+    fit: false,
   };
   
   const GRADIENT_SWATCHES = {
@@ -124,6 +179,7 @@ function App() {
     if (self.$content === undefined) self.$content = document.querySelector('.content');
     if (self.$lines === undefined)   self.$lines = document.querySelector('.lines');
     if (self.$command === undefined) self.$command = document.querySelector('.command');
+    if (self.$prompt === undefined) self.$prompt = document.getElementById('prompt');
     if (self.options === undefined)  self.getOptions();
     if (callback !== undefined) {
       callback();

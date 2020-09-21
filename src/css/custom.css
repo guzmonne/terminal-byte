@@ -31,7 +31,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   position: relative;
   text-align: center;
-  line-height: 2rem;
+  line-height: 2;
   width: 100%;
 }
 
@@ -84,6 +84,8 @@ body {
 .content .command .prompt {
   color: rgb(187, 187, 187);
   margin-right: 0.5rem;
+  line-height: 1.4;
+  margin-top: 2px;
 }
 
 pre {
