@@ -37,6 +37,7 @@ body {
 #taskbar {
   min-height: 2rem;
   display: flex;
+  align-items: center;
   border-radius: 0.5rem 0.5rem 0 0;
   background: rgb(19, 19, 19, 0.5);
   position: relative;
@@ -95,7 +96,7 @@ body {
 #command {
   display: flex;
   flex-direction: row;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 #command .prompt,

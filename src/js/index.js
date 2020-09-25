@@ -25,12 +25,18 @@ app.ready(function () {
   const [colorA, colorB] = app.getSwatches();
   document.body.style.background = `linear-gradient(${gradientRot}deg, ${colorA} 0%, ${colorB} 100%)`;
 
+  // Set the window title
+  const { title } = app.options;
+  if (title !== undefined) {
+    app.$title.textContent = title;
+  }
+
   // Apply highlights to the code if the `highlight` flag is defined.
-  const { text } = app.options;
+  const { command } = app.options;
   if (!!app.options.highlight) {
-    app.$code.innerHTML = Prism.highlight(text, Prism.languages.bash, 'bash');
+    app.$code.innerHTML = Prism.highlight(command, Prism.languages.bash, 'bash');
   } else {
-    app.$code.textContent = text;
+    app.$code.textContent = command;
   }
 
   // Fit the lines to the size of the window if the `fit` flag is set.
@@ -173,7 +179,8 @@ function App() {
     if (typeof query.minSize === 'string') query.minSize = parseInt(query.minSize, 10);
     if (typeof query.maxSize === 'string') query.maxSize = parseInt(query.maxSize, 10);
     if (typeof query.padding === 'string') query.padding = parseInt(query.padding, 10);
-    if (query.text !== undefined) query.text = atob(query.text);
+    if (query.command !== undefined) query.command = atob(query.command);
+    if (query.title !== undefined) query.title = atob(query.title);
     self.options = query;
   }
   /**
@@ -188,8 +195,9 @@ function App() {
   function init(callback) {
     if (self.$html === undefined)    self.$html = document.querySelector('html');
     if (self.$body === undefined)    self.$body = document.body;
-    if (self.$window === undefined) self.$window = document.getElementById('window');
+    if (self.$window === undefined)  self.$window = document.getElementById('window');
     if (self.$taskbar === undefined) self.$taskbar = document.getElementById('taskbar');
+    if (self.$title === undefined)   self.$title = document.querySelector('#taskbar .title');
     if (self.$content === undefined) self.$content = document.getElementById('content')
     if (self.$command === undefined) self.$command = document.getElementById('command');
     if (self.$lines === undefined)   self.$lines = document.querySelector('#content .lines');
