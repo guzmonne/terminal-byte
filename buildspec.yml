@@ -7,11 +7,7 @@ phases:
   build:
     commands:
       - npm run build
-  post_build:
-    commands:
-      - zip build.zip dist/*
 
 artifacts:
   files:
-    - build.zip
-  name: build
+    - dist/**/*
