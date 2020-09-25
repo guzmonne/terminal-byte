@@ -187,6 +187,8 @@ function App() {
     if (callback !== undefined) {
       callback();
     }
+    const $overlay = document.getElementById('overlay');
+    if ($overlay !== undefined) $overlay.parentNode.removeChild($overlay);
   }
   /**
    * Gets the width from an `HTMLElement`.
