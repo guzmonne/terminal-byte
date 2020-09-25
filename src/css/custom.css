@@ -1,7 +1,8 @@
 /**
  * BASE
  */
-* {
+*,
+code {
   box-sizing: border-box;
   font-family: 'Fira Mono', monospace;
 }
@@ -113,4 +114,24 @@ body {
   border: none;
   padding: 0;
   box-shadow: none;
+}
+
+/**
+  * OVERLAY
+  */
+#overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #2B3134;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#overlay svg path,
+#overlay svg rect{
+  fill: #FF6700;
 }
