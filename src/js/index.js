@@ -40,14 +40,13 @@ function shrinkLines() {
     return;
   }
   const { size, minSize } = app.options;
-  const fontSize = parseInt(app.$code.style.fontSize, 10);
+  const fontSize = parseInt(app.$html.style.fontSize, 10);
   if (isNaN(fontSize)) {
     console.log('fontSize is empty');
-    app.$code.style.fontSize = size + 'px';
+    app.$html.style.fontSize = size + 'px';
   } else if (fontSize > minSize) {
     console.log('fontSize is too big');
-    app.$code.style.fontSize = (fontSize - 1) + 'px';
-    app.$prompt.style.fontSize = (fontSize - 1) + 'px';
+    app.$html.style.fontSize = (fontSize - 1) + 'px';
   } else {
     console.log('fontSize is smaller or equal to minSize');
     return;
@@ -60,14 +59,13 @@ function expandLines() {
     return;
   }
   const { size, maxSize } = app.options;
-  const fontSize = parseInt(app.$code.style.fontSize, 10);
+  const fontSize = parseInt(app.$html.style.fontSize, 10);
   if (isNaN(fontSize)) {
     console.log('fontSize is empty');
-    app.$code.style.fontSize = size + 'px';
+    app.$html.style.fontSize = size + 'px';
   } else if (fontSize < maxSize) {
     console.log('fontSize is too small');
-    app.$code.style.fontSize = (fontSize + 1) + 'px';
-    app.$prompt.style.fontSize = (fontSize + 1) + 'px';
+    app.$html.style.fontSize = (fontSize + 1) + 'px';
   } else {
     console.log('fontSize is bigger or equal to maxSize');
     return;
@@ -180,7 +178,6 @@ function App() {
     if (self.$taskbar === undefined) self.$taskbar = document.getElementById('taskbar');
     if (self.$content === undefined) self.$content = document.getElementById('content')
     if (self.$command === undefined) self.$command = document.getElementById('command');
-    if (self.$prompt === undefined)  self.$prompt = document.querySelector('#content .prompt');
     if (self.$lines === undefined)   self.$lines = document.querySelector('#content .lines');
     if (self.$code === undefined)    self.$code = document.querySelector('#content .lines code');
     if (self.options === undefined)  self.getOptions();

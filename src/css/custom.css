@@ -95,6 +95,7 @@ body {
 #command {
   display: flex;
   flex-direction: row;
+  padding-left: 2rem;
 }
 
 #command .prompt,
@@ -105,7 +106,6 @@ body {
 #command .prompt {
   color: rgb(187, 187, 187);
   margin-right: 0.5rem;
-  margin-top: 2px;
 }
 
 #command .lines {
@@ -114,6 +114,14 @@ body {
   border: none;
   padding: 0;
   box-shadow: none;
+}
+
+#command .lines::before {
+  content: "$";
+  font-size: 1em;
+  margin-left: -1rem;
+  margin-right: 0.5rem;
+  color: #dcdcdc;
 }
 
 /**
