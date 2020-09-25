@@ -177,11 +177,12 @@ function App() {
   function init(callback) {
     if (self.$html === undefined)    self.$html = document.querySelector('html');
     if (self.$body === undefined)    self.$body = document.body;
-    if (self.$code === undefined)    self.$code = document.querySelector('pre code');
-    if (self.$content === undefined) self.$content = document.querySelector('.content');
-    if (self.$lines === undefined)   self.$lines = document.querySelector('.lines');
-    if (self.$command === undefined) self.$command = document.querySelector('.command');
-    if (self.$prompt === undefined) self.$prompt = document.getElementById('prompt');
+    if (self.$taskbar === undefined) self.$taskbar = document.getElementById('taskbar');
+    if (self.$content === undefined) self.$content = document.getElementById('content')
+    if (self.$command === undefined) self.$command = document.getElementById('command');
+    if (self.$prompt === undefined)  self.$prompt = document.querySelector('#content .prompt');
+    if (self.$lines === undefined)   self.$lines = document.querySelector('#content .lines');
+    if (self.$code === undefined)    self.$code = document.querySelector('#content .lines code');
     if (self.options === undefined)  self.getOptions();
     if (callback !== undefined) {
       callback();

@@ -1,5 +1,9 @@
+/**
+ * BASE
+ */
 * {
   box-sizing: border-box;
+  font-family: 'Fira Mono', monospace;
 }
 
 html {
@@ -11,11 +15,13 @@ body {
   background: linear-gradient(45deg, #1CB5E0 0%, #000851 100%);
   min-height: 100vh;
   padding: 5vh 5vw;
-  font-family: 'Fira Mono', monospace;
   overflow: hidden;
 }
 
-.window {
+/**
+  * WINDOW
+  */
+#window {
   width: 90vw;
   height: 90vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -24,7 +30,10 @@ body {
   flex-direction: column;
 }
 
-.taskbar {
+/**
+  * TASKBAR
+  */
+#taskbar {
   min-height: 2rem;
   display: flex;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -35,13 +44,13 @@ body {
   width: 100%;
 }
 
-.buttons {
+#taskbar .buttons {
   position: absolute;
   top: 0.1rem;
   left: 1rem;
 }
 
-.buttons div {
+#taskbar .buttons div {
   border-width: 0;
   border-style: solid;
   border-color: #e2e8f0;
@@ -52,53 +61,56 @@ body {
   width: .75rem;
 }
 
-.buttons .close {
+#taskbar .buttons .close {
   background-color: rgba(245,101,101,1);
 }
 
-.buttons .minimize {
+#taskbar .buttons .minimize {
   background-color: rgba(250,240,137,1);
 }
 
-.buttons .maximize {
+#taskbar .buttons .maximize {
   background-color: rgba(104,211,145,1);
 }
 
-.title {
+#taskbar .title {
   width: 100%;
   font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
 }
 
-.content {
+/**
+  * CONTENT
+  */
+#content {
   padding: 0.5rem;
-  min-height: calc(90vh - 2rem);
+  min-height: 1px; /* For simplebar to work */
 }
 
-.content .command {
+/**
+  * COMMAND
+  */
+#command {
   display: flex;
   flex-direction: row;
 }
 
-.content .command .prompt {
+#command .prompt,
+#command .lines {
+  line-height: 1.4;
+}
+
+#command .prompt {
   color: rgb(187, 187, 187);
   margin-right: 0.5rem;
-  line-height: 1.4;
   margin-top: 2px;
 }
 
-pre {
+#command .lines {
   margin: 0;
-  font-size: 1rem;
   background-color: transparent;
   border: none;
   padding: 0;
   box-shadow: none;
-  line-height: 1.4;
-}
-
-pre code {
-  font-size: 1rem;
-  font-family: 'Fira Mono', monospace;
 }
