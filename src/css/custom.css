@@ -2,7 +2,8 @@
  * BASE
  */
 *,
-code {
+code,
+pre::before {
   box-sizing: border-box;
   font-family: 'Fira Mono', monospace;
 }
@@ -13,18 +14,17 @@ html {
 }
 
 body {
-  background: linear-gradient(45deg, #1CB5E0 0%, #000851 100%);
+  background: black;
   min-height: 100vh;
-  padding: 5vh 5vw;
   overflow: hidden;
+  padding: 2.5rem;
 }
 
 /**
   * WINDOW
   */
 #window {
-  width: 90vw;
-  height: 90vh;
+  height: calc(100vh - 5rem);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
   display: flex;
@@ -38,7 +38,7 @@ body {
   min-height: 2rem;
   display: flex;
   border-radius: 0.5rem 0.5rem 0 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgb(19, 19, 19, 0.5);
   position: relative;
   text-align: center;
   line-height: 2;

@@ -9,6 +9,17 @@ app.ready(function () {
   // the elements sized with REM units look.
   document.querySelector('html').style.fontSize = app.options.size + 'px';
 
+  // Set the window padding
+  const { padding } = app.options;
+  app.$body.style.padding = padding + 'rem';
+  app.$window.style.height = `calc(100vh - ${2 * padding}rem)`
+
+  // Remove border-radius if paddign is 0
+  if (padding === 0) {
+    app.$window.style.borderRadius = 0;
+    app.$taskbar.style.borderRadius = 0;
+  }
+
   // Set the background gradient.
   const { gradientRot } = app.options;
   const [colorA, colorB] = app.getSwatches();
@@ -87,6 +98,7 @@ function App() {
     gradientRot: Math.round(Math.random() * 180, 0),
     highlight: false,
     fit: false,
+    padding: 2.5,
   };
   
   const GRADIENT_SWATCHES = {
@@ -158,8 +170,9 @@ function App() {
     if (search === '') return {};
     const query = {...DEFAULT_OPTIONS, ...JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}') };
     if (typeof query.size === 'string') query.size = parseInt(query.size, 10);
-    if (typeof query.minSize === 'string') query.size = parseInt(query.size, 10);
-    if (typeof query.maxSize === 'string') query.size = parseInt(query.size, 10);
+    if (typeof query.minSize === 'string') query.minSize = parseInt(query.minSize, 10);
+    if (typeof query.maxSize === 'string') query.maxSize = parseInt(query.maxSize, 10);
+    if (typeof query.padding === 'string') query.padding = parseInt(query.padding, 10);
     if (query.text !== undefined) query.text = atob(query.text);
     self.options = query;
   }
@@ -175,6 +188,7 @@ function App() {
   function init(callback) {
     if (self.$html === undefined)    self.$html = document.querySelector('html');
     if (self.$body === undefined)    self.$body = document.body;
+    if (self.$window === undefined) self.$window = document.getElementById('window');
     if (self.$taskbar === undefined) self.$taskbar = document.getElementById('taskbar');
     if (self.$content === undefined) self.$content = document.getElementById('content')
     if (self.$command === undefined) self.$command = document.getElementById('command');
