@@ -4626,26 +4626,23 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-simplebar-core@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/simplebar-core/-/simplebar-core-1.0.0.tgz#b0f8280f5f74375472b60b466b0ae4e39a2591ca"
-  integrity sha512-fa1k4uDUYfNNW1VUM+wbHlAFxphfl1J5Kk5pP/BoABP2h7PCm2aY3iza/j31dzAB9RrK9ue0djvW9MZ/LaF/8w==
+simplebar-core@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/simplebar-core/-/simplebar-core-1.0.3.tgz#c78871ecf0dbdcabf54b2e02defd0f8e431ea307"
+  integrity sha512-1beyQFG9fKVjz4BdwE9TBU7FfDUofKklexzlIr8bpz6d4WVHIOigUA3nMtiTNwHtR/J/sHXajOwVG0QDzlT4OA==
   dependencies:
-    "@babel/runtime" "^7.10.2"
     can-use-dom "^0.1.0"
-    core-js "^3.6.5"
     lodash-es "^4.17.15"
 
-simplebar@^6.0.0-beta.2:
-  version "6.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-6.0.0-beta.2.tgz#129f1656929b51a5305ebfb25149b5e8013854a0"
-  integrity sha512-BtOpcybdxUch69iCq/jJJoTGQHcNdEW6DSHt5zJrTt8aXUWvYq6B8m47l7oTyVoc6YH+FEawu/SjeohwmfG+tg==
+simplebar@^6.0.0-beta.6:
+  version "6.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-6.0.0-beta.6.tgz#d223b098a3f166cc25232b57127743ba4354231a"
+  integrity sha512-UruuyZV+P/TlmWBJxsoIclTtWwACRjVpKrv+2kH9SEC3LAxGJ+rSYniK5pCVyA5RHRf2s+1h7WTi6I3lwnQu+A==
   dependencies:
     "@babel/runtime" "^7.10.2"
     can-use-dom "^0.1.0"
     core-js "^3.6.5"
-    lodash-es "^4.17.15"
-    simplebar-core "^1.0.0"
+    simplebar-core "^1.0.3"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
