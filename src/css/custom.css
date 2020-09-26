@@ -94,8 +94,12 @@ pre {
   * CONTENT
   */
 #content {
-  padding: 0.5rem  1.5rem;
+  padding: 0.5rem  1rem;
   min-height: 1px; /* For simplebar to work */
+}
+
+#content.prompt {
+  padding: 0.5rem  1.5rem;
 }
 
 /**
@@ -106,10 +110,9 @@ pre {
   background-color: transparent;
   border: none;
   box-shadow: none;
-
 }
 
-#command::before {
+#content.prompt #command::before {
   content: "$";
   color: rgb(187, 187, 187);
   margin-left: -1rem;

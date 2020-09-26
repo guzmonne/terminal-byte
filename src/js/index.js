@@ -49,6 +49,11 @@ app.ready(function () {
       expandLines();
     }
   }
+
+  // Add the prompt if the `prompt` flag is set.
+  if (!!app.options.prompt) {
+    app.$content.className = 'prompt';
+  }
 });
 
 function shrinkLines() {
