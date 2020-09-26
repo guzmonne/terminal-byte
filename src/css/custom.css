@@ -3,6 +3,7 @@
  */
 *,
 code,
+pre,
 pre::before {
   box-sizing: border-box;
   font-family: 'Fira Mono', monospace;
@@ -94,29 +95,38 @@ pre {
   * CONTENT
   */
 #content {
-  padding: 0.5rem  1rem;
+  padding: 0  1rem;
   min-height: 1px; /* For simplebar to work */
 }
 
 #content.prompt {
-  padding: 0.5rem  1.5rem;
+  padding: 0  1.5rem;
 }
 
 /**
   * COMMAND
   */
-#command {
+.command {
+  margin-top: 1rem;
+  margin-bottom: 2px;
   line-height: 1.4;
   background-color: transparent;
   border: none;
   box-shadow: none;
 }
 
-#content.prompt #command::before {
+#content.prompt .command::before {
   content: "$";
   color: rgb(187, 187, 187);
   margin-left: -1rem;
   margin-right: 0.5rem;
+}
+
+/**
+  * OUTPUT
+  */
+.output {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /**

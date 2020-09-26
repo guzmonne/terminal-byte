@@ -34,11 +34,23 @@ app.ready(function () {
   }
 
   // Apply highlights to the code if the `highlight` flag is defined.
-  const { command } = app.options;
-  if (!!app.options.highlight) {
-    app.$code.innerHTML = Prism.highlight(command, Prism.languages.bash, 'bash');
-  } else {
-    app.$code.textContent = command;
+  const { commands, outputs, highlight } = app.options;
+  function highlightCommand(text) {
+    return !!highlight
+      ? Prism.highlight(text, Prism.languages.bash, 'bash')
+      : command
+  }
+  for (let i = 0; i < commands.length; i++) {
+    const html = `
+<pre class="command"><code>${highlightCommand( commands[i] )}</code></pre>
+${!!outputs[i] ? `<pre class="output">${ outputs[i] }</pre>` : ''}
+`;
+    app.$content.innerHTML = app.$content.innerHTML + html;
+  }
+
+  // Add the output if defined
+  if (!!app.options.output) {
+    app.$output.textContent = app.options.output;
   }
 
   // Fit the lines to the size of the window if the `fit` flag is set.
@@ -50,7 +62,7 @@ app.ready(function () {
     }
   }
 
-  // Add the prompt if the `prompt` flag is set.
+  // Add the prompt if the `prompt` flag is set or an output is defined
   if (!!app.options.prompt) {
     app.$content.className = 'prompt';
   }
@@ -181,7 +193,8 @@ function App() {
     if (typeof query.minSize === 'string') query.minSize = parseInt(query.minSize, 10);
     if (typeof query.maxSize === 'string') query.maxSize = parseInt(query.maxSize, 10);
     if (typeof query.padding === 'string') query.padding = parseInt(query.padding, 10);
-    if (query.command !== undefined)       query.command = atob(query.command);
+    if (query.commands !== undefined)      query.commands = query.commands.split(',').map(atob);
+    if (query.outputs !== undefined)       query.outputs  = query.outputs.split(',').map(atob);
     if (query.title !== undefined)         query.title   = atob(query.title);
     self.options = query;
   }
@@ -202,6 +215,7 @@ function App() {
     if (self.$title === undefined)   self.$title = document.querySelector('#taskbar .title');
     if (self.$content === undefined) self.$content = document.getElementById('content')
     if (self.$command === undefined) self.$command = document.getElementById('command');
+    if (self.$output === undefined)  self.$output = document.getElementById('output');
     if (self.$code === undefined)    self.$code = document.querySelector('#command code');
     if (self.options === undefined)  self.getOptions();
     if (callback !== undefined)      callback();
