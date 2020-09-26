@@ -1,4 +1,4 @@
-import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
+import SimpleBar from 'simplebar';
 import 'simplebar/dist/simplebar.css';
 import './plugins.js';
 
@@ -12,7 +12,9 @@ app.ready(function () {
   // Set the window padding
   const { padding } = app.options;
   app.$body.style.padding = padding + 'rem';
-  app.$window.style.height = `calc(100vh - ${2 * padding}rem)`
+  app.$window.style.height = `calc(100vh - ${2 * padding}rem)`;
+  app.$content.style.height = `calc(100vh - ${3 + padding}rem)`;
+  app.$content.style.width = `calc(100vw - ${2 * padding + 1}rem)`
 
   // Remove border-radius if paddign is 0
   if (padding === 0) {
@@ -41,50 +43,47 @@ app.ready(function () {
 
   // Fit the lines to the size of the window if the `fit` flag is set.
   if (!!app.options.fit) {
-    function fitLinesSize() {
-      if (app.getWidth(app.$lines) > app.getWidth(app.$command)) {
-        shrinkLines();
-      } else {
-        expandLines();
-      }
+    if (app.$code.offsetWidth > app.$content.offsetWidth) {
+      shrinkLines();
+    } else {
+      expandLines();
     }
-    fitLinesSize();
   }
+
+  // Run simplebar
+  new SimpleBar(app.$content);
 });
 
 function shrinkLines() {
-  if (app.getWidth(app.$lines) < app.getWidth(app.$command)) {
-    return;
-  }
   const { size, minSize } = app.options;
   const fontSize = parseInt(app.$html.style.fontSize, 10);
+  if (app.$code.offsetWidth <= app.$content.offsetWidth) {
+    return;
+  }
   if (isNaN(fontSize)) {
-    console.log('fontSize is empty');
     app.$html.style.fontSize = size + 'px';
   } else if (fontSize > minSize) {
-    console.log('fontSize is too big');
     app.$html.style.fontSize = (fontSize - 1) + 'px';
   } else {
-    console.log('fontSize is smaller or equal to minSize');
+    app.$html.style.fontSize = (fontSize + 1) + 'px';
     return;
   }
   shrinkLines();
 }
 
 function expandLines() {
-  if (app.getWidth(app.$lines) > app.getWidth(app.$command)) {
-    return;
-  }
   const { size, maxSize } = app.options;
   const fontSize = parseInt(app.$html.style.fontSize, 10);
+  if (app.$code.offsetWidth >= app.$content.offsetWidth) {
+    app.$html.style.fontSize = (fontSize - 1) + 'px';
+    return;
+  }
   if (isNaN(fontSize)) {
-    console.log('fontSize is empty');
     app.$html.style.fontSize = size + 'px';
   } else if (fontSize < maxSize) {
-    console.log('fontSize is too small');
     app.$html.style.fontSize = (fontSize + 1) + 'px';
   } else {
-    console.log('fontSize is bigger or equal to maxSize');
+    app.$html.style.fontSize = (fontSize - 1) + 'px';
     return;
   }
   expandLines();
@@ -96,7 +95,6 @@ function expandLines() {
  */
 function App() {
   const DEFAULT_OPTIONS = {
-    text: 'WW91IG11c3QgY29uZmlndXJlIHRoZSAidGV4dCIgcXVlcnkgYXR0cmlidXRl',
     minSize: 12,
     size: 18,
     maxSize: 36,
@@ -129,7 +127,6 @@ function App() {
     init,
     ready,
     getOptions,
-    getWidth,
     getRandomGradient,
     getSwatches,
   };
@@ -173,18 +170,17 @@ function App() {
    */
   function getOptions() {
     var search = location.search.substring(1);
-    console.log(search);
     if (search === '') {
       self.options = {...DEFAULT_OPTIONS};
       return;
     }
     const query = {...DEFAULT_OPTIONS, ...JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}') };
-    if (typeof query.size === 'string') query.size = parseInt(query.size, 10);
+    if (typeof query.size === 'string')    query.size    = parseInt(query.size, 10);
     if (typeof query.minSize === 'string') query.minSize = parseInt(query.minSize, 10);
     if (typeof query.maxSize === 'string') query.maxSize = parseInt(query.maxSize, 10);
     if (typeof query.padding === 'string') query.padding = parseInt(query.padding, 10);
-    if (query.command !== undefined) query.command = atob(query.command);
-    if (query.title !== undefined) query.title = atob(query.title);
+    if (query.command !== undefined)       query.command = atob(query.command);
+    if (query.title !== undefined)         query.title   = atob(query.title);
     self.options = query;
   }
   /**
@@ -204,29 +200,12 @@ function App() {
     if (self.$title === undefined)   self.$title = document.querySelector('#taskbar .title');
     if (self.$content === undefined) self.$content = document.getElementById('content')
     if (self.$command === undefined) self.$command = document.getElementById('command');
-    if (self.$lines === undefined)   self.$lines = document.querySelector('#content .lines');
-    if (self.$code === undefined)    self.$code = document.querySelector('#content .lines code');
+    if (self.$code === undefined)    self.$code = document.querySelector('#command code');
     if (self.options === undefined)  self.getOptions();
     if (callback !== undefined)      callback();
     // Now that the app is ready remove the overlay
     const $overlay = document.getElementById('overlay');
     if ($overlay !== undefined) $overlay.parentNode.removeChild($overlay);
-  }
-  /**
-   * Gets the width from an `HTMLElement`.
-   * @param {HTMLElement} $el - DOM element from which to get the width.
-   * @return {number} The given DOM element's width.
-   * 
-   * @example
-   *
-   * ```js
-   * const bodyWidth = App.getWidth(document.body);
-   * console.log(bodyWidth);
-   * // 768
-   * ```
-   */
-  function getWidth($el) {
-    return parseFloat(getComputedStyle($el, null).width.replace("px", ""));
   }
   /**
    * Returns a random gradient from the pre-defined `GRADIENT_SWATCHES` object.

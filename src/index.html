@@ -19,11 +19,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Roboto&display=swap" rel="stylesheet">
   <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-dark.min.css">
-
-  <link id="theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-solarizedlight.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/command-line/prism-command-line.min.css" integrity="sha512-4Y1uID1tEWeqDdbb7452znwjRVwseCy9kK9BNA7Sv4PlMroQzYRznkoWTfRURSADM/SbfZSbv/iW5sNpzSbsYg==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../node_modules/simplebar/dist/simplebar.css">
-
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/custom.css">
@@ -42,10 +37,8 @@
       </div>
       <div class="title"></div>
     </div>
-    <div id="content" data-simplebar>
-      <div id="command">
-        <pre class="lines"><code></code></pre>
-      </div>
+    <div id="content">
+      <pre id="command"><code></code></pre>
       <div id="output"></div>
     </div>
   </div>
@@ -68,9 +61,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-json.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-bash.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/command-line/prism-command-line.min.js" integrity="sha512-a58hJgsPeGLYUdOI9kcWlg/W4Zvv75x3YGimp5kTChivqrvRkniF8U2M30VmWttYaI9vcZ3xS2b2wLypQs3afg==" crossorigin="anonymous"></script>
-  <script src="js/vendor/modernizr-3.11.3.min.js"></script>
   <script src="js/index.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->

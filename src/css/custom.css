@@ -20,6 +20,10 @@ body {
   padding: 2.5rem;
 }
 
+pre {
+  margin: 0;
+}
+
 /**
   * WINDOW
   */
@@ -82,11 +86,15 @@ body {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.simplebar-track.simplebar-vertical {
+  right: calc(2px - 1rem);
+}
+
 /**
   * CONTENT
   */
 #content {
-  padding: 0.5rem;
+  padding: 0.5rem  1.5rem;
   min-height: 1px; /* For simplebar to work */
 }
 
@@ -94,35 +102,18 @@ body {
   * COMMAND
   */
 #command {
-  display: flex;
-  flex-direction: row;
-  padding-left: 1.5rem;
-}
-
-#command .prompt,
-#command .lines {
   line-height: 1.4;
-}
-
-#command .prompt {
-  color: rgb(187, 187, 187);
-  margin-right: 0.5rem;
-}
-
-#command .lines {
-  margin: 0;
   background-color: transparent;
   border: none;
-  padding: 0;
   box-shadow: none;
+
 }
 
-#command .lines::before {
+#command::before {
   content: "$";
-  font-size: 1em;
+  color: rgb(187, 187, 187);
   margin-left: -1rem;
   margin-right: 0.5rem;
-  color: #dcdcdc;
 }
 
 /**
