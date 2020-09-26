@@ -38,7 +38,7 @@ app.ready(function () {
   function highlightCommand(text) {
     return !!highlight
       ? Prism.highlight(text, Prism.languages.bash, 'bash')
-      : command
+      : text
   }
   for (let i = 0; i < commands.length; i++) {
     const html = `
