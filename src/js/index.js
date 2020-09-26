@@ -173,7 +173,11 @@ function App() {
    */
   function getOptions() {
     var search = location.search.substring(1);
-    if (search === '') return {};
+    console.log(search);
+    if (search === '') {
+      self.options = {...DEFAULT_OPTIONS};
+      return;
+    }
     const query = {...DEFAULT_OPTIONS, ...JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}') };
     if (typeof query.size === 'string') query.size = parseInt(query.size, 10);
     if (typeof query.minSize === 'string') query.minSize = parseInt(query.minSize, 10);
@@ -203,9 +207,8 @@ function App() {
     if (self.$lines === undefined)   self.$lines = document.querySelector('#content .lines');
     if (self.$code === undefined)    self.$code = document.querySelector('#content .lines code');
     if (self.options === undefined)  self.getOptions();
-    if (callback !== undefined) {
-      callback();
-    }
+    if (callback !== undefined)      callback();
+    // Now that the app is ready remove the overlay
     const $overlay = document.getElementById('overlay');
     if ($overlay !== undefined) $overlay.parentNode.removeChild($overlay);
   }
