@@ -1,4 +1,4 @@
-import SimpleBar from 'simplebar';
+import 'simplebar';
 import 'simplebar/dist/simplebar.css';
 import './plugins.js';
 
@@ -49,9 +49,6 @@ app.ready(function () {
       expandLines();
     }
   }
-
-  // Run simplebar
-  new SimpleBar(app.$content);
 });
 
 function shrinkLines() {
