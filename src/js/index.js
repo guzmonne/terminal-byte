@@ -41,7 +41,7 @@ app.ready(function () {
 
   // Add the prompt if the `prompt` flag is set or an output is defined
   if (!!app.options.prompt) {
-    app.setClass(app.$content, 'prompt');
+    app.setClassName(app.$content, 'prompt');
   }
 
   // Fit the lines to the size of the window if the `fit` flag is set.
