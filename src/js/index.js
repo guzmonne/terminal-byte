@@ -55,38 +55,3 @@ app.ready(function () {
     }
   }
 });
-
-function shrinkLines() {
-  const { size, minSize } = app.options;
-  const fontSize = parseInt(app.$html.style.fontSize, 10);
-  if (app.$code.offsetWidth <= app.$content.offsetWidth) {
-    return;
-  }
-  if (isNaN(fontSize)) {
-    app.$html.style.fontSize = size + 'px';
-  } else if (fontSize > minSize) {
-    app.$html.style.fontSize = (fontSize - 1) + 'px';
-  } else {
-    app.$html.style.fontSize = (fontSize + 1) + 'px';
-    return;
-  }
-  shrinkLines();
-}
-
-function expandLines() {
-  const { size, maxSize } = app.options;
-  const fontSize = parseInt(app.$html.style.fontSize, 10);
-  if (app.$code.offsetWidth >= app.$content.offsetWidth) {
-    app.$html.style.fontSize = (fontSize - 1) + 'px';
-    return;
-  }
-  if (isNaN(fontSize)) {
-    app.$html.style.fontSize = size + 'px';
-  } else if (fontSize < maxSize) {
-    app.$html.style.fontSize = (fontSize + 1) + 'px';
-  } else {
-    app.$html.style.fontSize = (fontSize - 1) + 'px';
-    return;
-  }
-  expandLines();
-}

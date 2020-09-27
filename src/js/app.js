@@ -356,20 +356,17 @@ function App() {
    */
   function reduceFontSizeRecursively() {
     const { size, minSize } = self.options;
-    const fontSize = parseInt(self.getFontSize(self.$html), 10);
-    if (self.$content.offsetWidth - fontSize > getCommandsMaxWidth()) {
+    const fontSize = parseInt(self.getFontSize(self.$html), 10) || size;
+    if (self.$content.offsetWidth - fontSize > self.getCommandsMaxWidth()) {
       return;
     }
-    console.log(fontSize, minSize);
-    if (isNaN(fontSize)) {
-      self.setFontSize(self.$html, size);
-    } else if (fontSize > minSize) {
+    if (fontSize > minSize) {
       self.setFontSize(self.$html, fontSize - 1);
     } else {
       self.setFontSize(self.$html, fontSize + 1);
       return;
     }
-    reduceFontSizeRecursively();
+    self.reduceFontSizeRecursively();
   }
   /**
    * Increases the `fontSize` of the `html` element recursively, one pixel
@@ -377,21 +374,18 @@ function App() {
    * to the width of the `$content` element.
    */
   function increaseFontSizeRecursively() {
-    const fontSize = parseInt(self.getFontSize(self.$html), 10);
     const { size, maxSize } = self.options;
-    if (self.$content.offsetWidth - fontSize < getCommandsMaxWidth()) {
+    const fontSize = parseInt(self.getFontSize(self.$html), 10) || size;
+    if (self.$content.offsetWidth - fontSize < self.getCommandsMaxWidth()) {
       self.setFontSize(self.$html, fontSize - 1);
       return;
     }
-    console.log(fontSize, maxSize);
-    if (isNaN(fontSize)) {
-      self.setFontSize(self.$html, size);
-    } else if (fontSize < maxSize) {
+    if (fontSize < maxSize) {
       self.setFontSize(self.$html, fontSize + 1);
     } else {
       self.setFontSize(self.$html, fontSize - 1);
       return;
     }
-    increaseFontSizeRecursively();
+    self.increaseFontSizeRecursively();
   }
 }

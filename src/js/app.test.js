@@ -664,6 +664,117 @@ describe('App', () => {
 
   });
 
+  describe('reduceFontSizeRecursively()', () => {
+    let app, spy;
+    
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div id="window">
+          <div id="taskbar">
+            <div class="buttons">
+              <div class="close"></div>
+              <div class="minimize"></div>
+              <div class="maximize"></div>
+            </div>
+            <div class="title"></div>
+          </div>
+          <div id="content" data-simplebar></div>
+        </div>
+      `;
+      app = App();
+      app.ready();
+      const codeWidths = [2000, 200, 20];
+      let i = 0;
+      app.options.minSize = 1;
+      app.getCommandsMaxWidth = jest.fn(() => i > 3 ? 20 : codeWidths[i++]);
+      spy = jest.spyOn(app, 'reduceFontSizeRecursively');
+    });
+
+    afterEach(() => {
+      spy.mockRestore();
+    });
+
+    test('should be defined', () => {
+      expect(app.reduceFontSizeRecursively).toBeDefined();
+    });
+
+    test('should be called only once if the content width is bigger than the code', () => {
+      app.$content = { offsetWidth: 9999 };
+      app.reduceFontSizeRecursively();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    test('should be called enough times to make the code smaller than the content width', () => {
+      app.$content = { offsetWidth: 100 };
+      app.reduceFontSizeRecursively();
+      expect(spy).toHaveBeenCalledTimes(3);
+    });
+
+    test('should return if the fontSize is equal to the minSize', () => {
+      app.$content = { offsetWidth: 100 };
+      app.options.minSize = app.options.size;
+      app.reduceFontSizeRecursively();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+  });
+
+  describe('increaseFontSizeRecursively()', () => {
+    let app, spy;
+    
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div id="window">
+          <div id="taskbar">
+            <div class="buttons">
+              <div class="close"></div>
+              <div class="minimize"></div>
+              <div class="maximize"></div>
+            </div>
+            <div class="title"></div>
+          </div>
+          <div id="content" data-simplebar></div>
+        </div>
+      `;
+      app = App();
+      app.ready();
+      const codeWidths = [20, 200, 20000];
+      let i = 0;
+      app.options.maxSize = 9999;
+      app.getCommandsMaxWidth = jest.fn(() => i > 3 ? 2000 : codeWidths[i++]);
+      spy = jest.spyOn(app, 'increaseFontSizeRecursively');
+    });
+
+    afterEach(() => {
+      spy.mockRestore();
+    });
+
+    test('should be defined', () => {
+      expect(app.increaseFontSizeRecursively).toBeDefined();
+    });
+
+    test('should be called only once if the content width is bigger than the code', () => {
+      app.$content = { offsetWidth: 1 };
+      app.increaseFontSizeRecursively();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    test('should be called enough times to make the code as big as the content width', () => {
+      app.$content = { offsetWidth: 2000 };
+      app.increaseFontSizeRecursively();
+      expect(spy).toHaveBeenCalledTimes(3);
+    });
+
+    test('should return if the fontSize is equal to the maxSize', () => {
+      app.$content = { offsetWidth: 2000 };
+      app.setFontSize(app.$html, 18);
+      app.options.maxSize = app.options.size;
+      app.increaseFontSizeRecursively();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+  });
+
 });
 
 function setLocationSearch(search) {
