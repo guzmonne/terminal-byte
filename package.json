@@ -12,9 +12,27 @@
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "postbuild": "cp src/browserconfig.xml src/favicon.ico src/humans.txt src/LICENSE.txt src/robots.txt dist",
-    "test": "echo TODO"
+    "test": "jest --watch"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^/(.*)$": "<rootDir>/src/$1"
+    },
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules"]
   },
   "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2",
     "prism": "^4.1.2",
     "prismjs": "^1.21.0",
     "simplebar": "^6.0.0-beta.6"
