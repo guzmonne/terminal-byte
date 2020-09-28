@@ -131,9 +131,9 @@ function App() {
     if (typeof query.minSize === 'string') query.minSize  = parseInt(query.minSize, 10);
     if (typeof query.maxSize === 'string') query.maxSize  = parseInt(query.maxSize, 10);
     if (typeof query.padding === 'string') query.padding  = parseInt(query.padding, 10);
-    if (query.commands !== undefined)      query.commands = Array.isArray(query.commands) ? query.commands : query.commands.split(',').map(atob);
-    if (query.outputs !== undefined)       query.outputs  = Array.isArray(query.outputs)  ? query.outputs  : query.outputs.split(',').map(atob);
-    if (query.title !== undefined)         query.title    = atob(query.title);
+    if (query.commands !== undefined)      query.commands = Array.isArray(query.commands) ? query.commands : query.commands.split(',').map(atou);
+    if (query.outputs !== undefined)       query.outputs  = Array.isArray(query.outputs)  ? query.outputs  : query.outputs.split(',').map(atou);
+    if (query.title !== undefined)         query.title    = atou(query.title);
     self.options = query;
   }
   /**
@@ -388,4 +388,22 @@ function App() {
     }
     self.increaseFontSizeRecursively();
   }
+}
+
+/**
+ * ASCII to Unicode (decode Base64 to original data)
+ * @param {string} b64
+ * @return {string}
+ */
+function atou(b64) {
+  return decodeURIComponent(escape(atob(b64)));
+}
+
+/**
+ * Unicode to ASCII (encode data to Base64)
+ * @param {string} data
+ * @return {string}
+ */
+function utoa(data) {
+  return btoa(unescape(encodeURIComponent(data)));
 }
