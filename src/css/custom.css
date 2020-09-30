@@ -34,6 +34,7 @@ pre {
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 /**
@@ -69,15 +70,15 @@ pre {
 }
 
 #taskbar .buttons .close {
-  background-color: rgba(245,101,101,1);
+  background-color: #f56565;
 }
 
 #taskbar .buttons .minimize {
-  background-color: rgba(250,240,137,1);
+  background-color: #faf089;
 }
 
 #taskbar .buttons .maximize {
-  background-color: rgba(104,211,145,1);
+  background-color: #68d391;
 }
 
 #taskbar .title {
@@ -119,7 +120,7 @@ pre {
   content: "$";
   color: rgb(187, 187, 187);
   margin-left: -1rem;
-  margin-right: 0.5rem;
+  margin-right: 0.38rem;
 }
 
 /**
