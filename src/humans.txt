@@ -3,7 +3,7 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Guzmán Monné -- Team Leader -- @guzmonne
 
 # THANKS
 
@@ -11,5 +11,4 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
+    CSS3, HTML5, JavaScript, React, Parcel, CodePipeline, CodeBuild, S3, CloudFront, Normalize.css

@@ -2,18 +2,21 @@
   "name": "terminal-byte",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:h5bp/html5-boilerplate.git",
+  "repository": "git@github.com:guzmonne/terminal-byte.git",
   "author": "Guzman Monne <guzmonne@hotmail.com>",
-  "license": "MIT",
+  "license": "BSD-2",
   "devDependencies": {
-    "parcel": "^1.12.4"
+    "parcel": "^1.12.4",
+    "cli-real-favicon": "^0.0.8"
   },
   "scripts": {
     "dev": "parcel src/index.html --port 1235",
     "build": "parcel build src/index.html",
-    "postbuild": "cp src/browserconfig.xml src/favicon.ico src/humans.txt src/LICENSE.txt src/robots.txt dist",
+    "postbuild": "cp src/browserconfig.xml src/favicon.ico src/humans.txt ../LICENSE src/robots.txt dist",
     "test": "jest --watch",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "favicon": "real-favicon generate faviconDescription.json faviconData.json src",
+    "postfavicon": "real-favicon inject faviconData.json src *.html"
   },
   "jest": {
     "moduleNameMapper": {
