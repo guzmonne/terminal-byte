@@ -130,7 +130,7 @@ function App() {
     if (typeof query.size === 'string')    query.size     = parseInt(query.size, 10);
     if (typeof query.minSize === 'string') query.minSize  = parseInt(query.minSize, 10);
     if (typeof query.maxSize === 'string') query.maxSize  = parseInt(query.maxSize, 10);
-    if (typeof query.padding === 'string') query.padding  = parseInt(query.padding, 10);
+    if (typeof query.padding === 'string') query.padding  = parseFloat(query.padding, 10);
     if (query.commands !== undefined)      query.commands = Array.isArray(query.commands) ? query.commands : query.commands.split(',').map(atou);
     if (query.outputs !== undefined)       query.outputs  = Array.isArray(query.outputs)  ? query.outputs  : query.outputs.split(',').map(atou);
     if (query.title !== undefined)         query.title    = atou(query.title);
