@@ -9,7 +9,6 @@ phases:
       - node -e "console.log('Running Node.js ' + process.version)"
       # Setup for Yarn
       - curl -o- -L https://yarnpkg.com/install.sh | bash
-      - yum install yarn
       - yarn --version
       # Run yarn install 
       - yarn install
