@@ -4,12 +4,12 @@ phases:
   install:
     commands:
       # Install NodeJS
-      - curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
-      - sudo yum install nodejs
+      - curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
+      - yum install nodejs
       # Setup for Yarn
-      - curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-      - sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
-      - sudo yum install yarn
+      - curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+      - rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+      - yum install yarn
       - yarn --version
       # Run yarn install 
       - yarn install
