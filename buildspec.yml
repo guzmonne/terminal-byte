@@ -8,8 +8,7 @@ phases:
       - . ~/.nvm/nvm.sh
       - node -e "console.log('Running Node.js ' + process.version)"
       # Setup for Yarn
-      - curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-      - rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+      - curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
       - yum install yarn
       - yarn --version
       # Run yarn install 
