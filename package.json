@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "parcel src/index.html --port 1235",
     "build": "parcel build src/index.html",
-    "postbuild": "cp src/browserconfig.xml src/favicon.ico src/humans.txt ../LICENSE src/robots.txt dist",
+    "postbuild": "cp src/browserconfig.xml src/favicon.ico src/humans.txt LICENSE src/robots.txt dist",
     "test": "jest --watch",
     "coverage": "jest --coverage",
     "favicon": "real-favicon generate faviconDescription.json faviconData.json src",

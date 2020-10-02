@@ -3,10 +3,14 @@ version: 0.2
 phases:
   install:
     commands:
-      - npm install
+      # Setup for Yarn
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+      # Run yarn install 
+      - yarn install
   build:
     commands:
-      - npm run build
+      - yarn build
 
 artifacts:
   files:
