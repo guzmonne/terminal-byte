@@ -4,8 +4,9 @@ phases:
   install:
     commands:
       # Install NodeJS
-      - curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-      - yum install nodejs
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+      - . ~/.nvm/nvm.sh
+      - node -e "console.log('Running Node.js ' + process.version)"
       # Setup for Yarn
       - curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
       - rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
