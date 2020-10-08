@@ -46,38 +46,39 @@ pre {
   align-items: center;
   border-radius: 0.5rem 0.5rem 0 0;
   background: rgb(19, 19, 19, 0.5);
-  position: relative;
   text-align: center;
-  line-height: 2;
   width: 100%;
 }
 
 #taskbar .buttons {
-  position: absolute;
   top: 0.1rem;
   left: 1rem;
+  display: flex;
+  margin-left: 0.5rem;
 }
 
-#taskbar .buttons div {
+.buttons * {
   border-width: 0;
   border-style: solid;
   border-color: #e2e8f0;
-  border-radius: 9999px;
+  border-radius: 100%;
   display: inline-block;
-  height: .75rem;
-  margin-right: .15rem;
-  width: .75rem;
+  height:0.75rem;
+  width:0.75rem;
+  margin-right: .5rem;
+  cursor: pointer;
+  z-index: 100;
 }
 
-#taskbar .buttons .close {
+.buttons #close {
   background-color: #f56565;
 }
 
-#taskbar .buttons .minimize {
+.buttons #minimize {
   background-color: #faf089;
 }
 
-#taskbar .buttons .maximize {
+.buttons #maximize {
   background-color: #68d391;
 }
 
@@ -86,6 +87,8 @@ pre {
   font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
+  margin-left: -5rem;
+  z-index: 50;
 }
 
 .simplebar-track.simplebar-vertical {

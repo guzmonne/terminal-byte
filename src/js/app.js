@@ -1,3 +1,4 @@
+const html2canvas = require('html2canvas');
 exports = module.exports = App;
 /**
  * @class
@@ -58,6 +59,7 @@ function App() {
     createCommandsAndOutputs,
     reduceFontSizeRecursively,
     increaseFontSizeRecursively,
+    printScreen,
   };
   
   // Return
@@ -97,14 +99,19 @@ function App() {
    * ```
    */
   function init(callback) {
-    if (self.$html === undefined)    self.$html = document.querySelector('html');
-    if (self.$body === undefined)    self.$body = document.body;
-    if (self.$window === undefined)  self.$window = document.getElementById('window');
-    if (self.$taskbar === undefined) self.$taskbar = document.getElementById('taskbar');
-    if (self.$title === undefined)   self.$title = document.querySelector('#taskbar .title');
-    if (self.$content === undefined) self.$content = document.getElementById('content')
-    if (self.options === undefined)  self.getOptions();
-    if (callback !== undefined)      callback();
+    if (self.$html === undefined)     self.$html = document.querySelector('html');
+    if (self.$body === undefined)     self.$body = document.body;
+    if (self.$window === undefined)   self.$window = document.getElementById('window');
+    if (self.$taskbar === undefined)  self.$taskbar = document.getElementById('taskbar');
+    if (self.$title === undefined)    self.$title = document.querySelector('#taskbar .title');
+    if (self.$content === undefined)  self.$content = document.getElementById('content');
+    if (self.$maximize === undefined) self.$maximize = document.getElementById('maximize');
+    if (self.$minimize === undefined) self.$minimize = document.getElementById('minimize');
+    if (self.$close === undefined)    self.$close = document.getElementById('close');
+    if (self.options === undefined)   self.getOptions();
+    if (callback !== undefined)       callback();
+    // Set up the terminal buttons
+    if (self.$maximize) self.$maximize.href = window.location.href;
     // Now that the app is ready remove the overlay
     const $overlay = document.getElementById('overlay');
     if ($overlay === undefined || $overlay === null) return;
@@ -388,6 +395,19 @@ function App() {
     }
     self.increaseFontSizeRecursively();
   }
+
+  function printScreen() {
+    html2canvas(document.body).then(canvas => {
+      let downloadLink = document.createElement('a');
+      downloadLink.setAttribute('download', 'terminal_bit.png');
+      canvas.toBlob((blob) => {
+        let url = URL.createObjectURL(blob);
+        downloadLink.setAttribute('href', url);
+        downloadLink.click();
+      });
+      //window.open(canvas.toDataURL('image/png'));
+    });
+  }
 }
 
 /**
@@ -397,13 +417,4 @@ function App() {
  */
 function atou(b64) {
   return decodeURIComponent(escape(atob(b64)));
-}
-
-/**
- * Unicode to ASCII (encode data to Base64)
- * @param {string} data
- * @return {string}
- */
-function utoa(data) {
-  return btoa(unescape(encodeURIComponent(data)));
 }

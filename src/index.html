@@ -35,7 +35,6 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/custom.css">
-  
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -44,9 +43,7 @@
   <div id="window">
     <div id="taskbar">
       <div class="buttons">
-        <div class="close"></div>
-        <div class="minimize"></div>
-        <div class="maximize"></div>
+        <a href=# id="close"></a><a href=# id="minimize"></a><a href="#" id="maximize" target="_blank"></a>
       </div>
       <div class="title"></div>
     </div>
@@ -73,12 +70,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-bash.min.js"></script>
   <script src="js/index.js"></script>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179387636-1"></script>
   <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+    if (process.env.GOOGLE_ANALYTICS_ID) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', process.env.GOOGLE_ANALYTICS_ID);
+    }
   </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+
 </body>
 
 </html>

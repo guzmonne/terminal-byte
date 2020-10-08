@@ -80,7 +80,15 @@ describe('App', () => {
   });
 
   describe('init()', () => {
-    let app;
+    let app, _location;
+
+    beforeAll(() => {
+      _location = {...global.window.location};
+    });
+
+    afterAll(() => {
+      global.window.location = _location;
+    });
 
     beforeEach(() => {
       app = App();
@@ -118,9 +126,9 @@ describe('App', () => {
         <div id="window">
           <div id="taskbar">
             <div class="buttons">
-              <div class="close"></div>
-              <div class="minimize"></div>
-              <div class="maximize"></div>
+              <a href="#" id="close"></a>
+              <a href="#" id="minimize"></a>
+              <a href="#" id="maximize"></a>
             </div>
             <div class="title"></div>
           </div>
@@ -135,7 +143,29 @@ describe('App', () => {
       expect(isElement(app.$taskbar)).toBe(true);
       expect(isElement(app.$title)).toBe(true);
       expect(isElement(app.$content)).toBe(true);
+      expect(isElement(app.$maximize)).toBe(true);
     });
+
+    test('should set the href of the maximize button', () => {
+      document.body.innerHTML = `
+        <div id="window">
+          <div id="taskbar">
+            <div class="buttons">
+              <a href="#" id="close"></a>
+              <a href="#" id="minimize"></a>
+              <a href="#" id="maximize"></a>
+            </div>
+            <div class="title"></div>
+          </div>
+          <div id="content" data-simplebar></div>
+        </div>      
+      `;
+      href = 'localhost:1234?something=awesome';
+      setLocationHref(href);
+      const app = App();
+      app.init();
+      expect(app.$maximize.href).toBe(href);
+    })
 
   });
 
@@ -781,6 +811,12 @@ function setLocationSearch(search) {
   delete global.window.location;
   global.window = Object.create(window);
   global.window.location = { search };
+}
+
+function setLocationHref(href) {
+  delete global.window.location;
+  global.window = Object.create(window);
+  global.window.location = { href, search: '?' + href.split('?')[1]};
 }
 
 function isElement(element) {
