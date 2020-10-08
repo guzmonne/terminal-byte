@@ -91,6 +91,19 @@ describe('App', () => {
     });
 
     beforeEach(() => {
+      document.body.innerHTML = `
+        <div id="window">
+          <div id="taskbar">
+            <div class="buttons">
+              <a href="#" id="close"></a>
+              <a href="#" id="minimize"></a>
+              <a href="#" id="maximize"></a>
+            </div>
+            <div class="title"></div>
+          </div>
+          <div id="content" data-simplebar></div>
+        </div>      
+      `;
       app = App();
     });
     
@@ -122,19 +135,6 @@ describe('App', () => {
     });
 
     test('should set a reference to all the required HTML elements', () => {
-      document.body.innerHTML = `
-        <div id="window">
-          <div id="taskbar">
-            <div class="buttons">
-              <a href="#" id="close"></a>
-              <a href="#" id="minimize"></a>
-              <a href="#" id="maximize"></a>
-            </div>
-            <div class="title"></div>
-          </div>
-          <div id="content" data-simplebar></div>
-        </div>      
-      `;
       const app = App();
       app.init();
       expect(isElement(app.$html)).toBe(true);
@@ -144,28 +144,22 @@ describe('App', () => {
       expect(isElement(app.$title)).toBe(true);
       expect(isElement(app.$content)).toBe(true);
       expect(isElement(app.$maximize)).toBe(true);
+      expect(isElement(app.$minimize)).toBe(true);
+      expect(isElement(app.$close)).toBe(true);
     });
 
     test('should set the href of the maximize button', () => {
-      document.body.innerHTML = `
-        <div id="window">
-          <div id="taskbar">
-            <div class="buttons">
-              <a href="#" id="close"></a>
-              <a href="#" id="minimize"></a>
-              <a href="#" id="maximize"></a>
-            </div>
-            <div class="title"></div>
-          </div>
-          <div id="content" data-simplebar></div>
-        </div>      
-      `;
       href = 'localhost:1234?something=awesome';
       setLocationHref(href);
       const app = App();
       app.init();
       expect(app.$maximize.href).toBe(href);
-    })
+    });
+
+    test('should add an onclick handler to the minimize button', () => {
+      app.init();
+      expect(app.$minimize.onClickListener).toBe(true);
+    });
 
   });
 

@@ -112,6 +112,13 @@ function App() {
     if (callback !== undefined)       callback();
     // Set up the terminal buttons
     if (self.$maximize) self.$maximize.href = window.location.href;
+    if (self.$minimize && !self.$minimize.onClickListener) {
+      self.$minimize.onClickListener = true;
+      self.$minimize.addEventListener('click', (e) => {
+        e.preventDefault();
+        self.printScreen();
+      });
+    }
     // Now that the app is ready remove the overlay
     const $overlay = document.getElementById('overlay');
     if ($overlay === undefined || $overlay === null) return;
