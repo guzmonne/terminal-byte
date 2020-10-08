@@ -1,5 +1,6 @@
 import 'simplebar';
 import 'simplebar/dist/simplebar.css';
+import ClipboardJS from 'clipboard';
 import './plugins.js';
 import App from './app.js';
 
@@ -54,4 +55,9 @@ app.ready(function () {
       app.reduceFontSizeRecursively();
     }
   }
+
+  // Setup ClipboardJS
+  const {commands, outputs} = app.options;
+  app.$close.dataset['clipboardText'] = commands.map((c, i) => [c, outputs[i]].join('\n')).join('\n');
+  app.clipboard = new ClipboardJS('.clipboard');
 });

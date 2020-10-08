@@ -161,6 +161,15 @@ describe('App', () => {
       expect(app.$minimize.onClickListener).toBe(true);
     });
 
+    test('should initialize clipboard.js', () => {
+      global.window.ClipboardJS = jest.fn(() => true);
+      expect(app.clipboard).not.toBeDefined();
+      app.init();
+      expect(global.window.ClipboardJS).toHaveBeenCalled();
+      expect(app.clipboard).toBeDefined();
+      delete global.window.ClipboardJS;
+    });
+
   });
 
   describe('isElement()', () => {

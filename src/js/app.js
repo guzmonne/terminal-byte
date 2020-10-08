@@ -119,6 +119,7 @@ function App() {
         self.printScreen();
       });
     }
+    if (window.ClipboardJS && !self.clipboard) self.clipboard = new window.ClipboardJS('.clipboard');
     // Now that the app is ready remove the overlay
     const $overlay = document.getElementById('overlay');
     if ($overlay === undefined || $overlay === null) return;
