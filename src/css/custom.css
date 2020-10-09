@@ -157,3 +157,58 @@ pre {
 #overlay svg rect{
   fill: #FF6700;
 }
+
+/**
+  * TOAST
+  */
+#toast {
+  position: fixed;
+  top: 50%;
+  left: -25%;
+  right: -25%;
+  text-align: center;
+  background-color: black;
+  z-index: -1;
+  opacity: 0;
+}
+
+#toast.visible {
+  opacity: 0.5;
+  z-index: 9999;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  animation-name: rubberBand;
+}

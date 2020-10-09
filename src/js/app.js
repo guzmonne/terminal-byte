@@ -60,6 +60,7 @@ function App() {
     reduceFontSizeRecursively,
     increaseFontSizeRecursively,
     printScreen,
+    showToast,
   };
   
   // Return
@@ -108,6 +109,7 @@ function App() {
     if (self.$maximize === undefined) self.$maximize = document.getElementById('maximize');
     if (self.$minimize === undefined) self.$minimize = document.getElementById('minimize');
     if (self.$close === undefined)    self.$close = document.getElementById('close');
+    if (self.$toast === undefined)    self.$toast = document.getElementById('toast');
     if (self.options === undefined)   self.getOptions();
     if (callback !== undefined)       callback();
     // Set up the terminal buttons
@@ -117,6 +119,13 @@ function App() {
       self.$minimize.addEventListener('click', (e) => {
         e.preventDefault();
         self.printScreen();
+      });
+    }
+    if (self.$close && !self.$close.onClickListener) {
+      self.$close.onClickListener = true;
+      self.$close.addEventListener('click', (e) => {
+        e.preventDefault();
+        self.showToast();
       });
     }
     if (window.ClipboardJS && !self.clipboard) self.clipboard = new window.ClipboardJS('.clipboard');
@@ -413,8 +422,12 @@ function App() {
         downloadLink.setAttribute('href', url);
         downloadLink.click();
       });
-      //window.open(canvas.toDataURL('image/png'));
     });
+  }
+
+  function showToast() {
+    self.$toast.className = 'visible rubberBand';
+    setTimeout(() => self.$toast.className = '', 2000);
   }
 }
 
