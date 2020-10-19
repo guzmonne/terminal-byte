@@ -920,10 +920,10 @@
     "@babel/plugin-transform-react-jsx-source" "^7.10.4"
     "@babel/plugin-transform-react-pure-annotations" "^7.10.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.4.4", "@babel/runtime@^7.8.4":
-  version "7.11.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
-  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.4.4", "@babel/runtime@^7.8.4":
+  version "7.12.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
+  integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -3230,7 +3230,7 @@ core-js@^2.4.0, core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
-core-js@^3.2.1, core-js@^3.6.5:
+core-js@^3.2.1:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
@@ -8043,24 +8043,23 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-simplebar-core@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/simplebar-core/-/simplebar-core-1.0.4.tgz#e57a6fc27752592781c20ae10ee714b54f967cf9"
-  integrity sha512-C7CIW28DCKfRa12TGoPYaLu+hmYHiA0yw4tHQLwBPkqmJ1ZsVGlS7B6yflwm1W3tAgIhoJA/OKvsLDboHh91/Q==
+simplebar-core@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/simplebar-core/-/simplebar-core-1.0.5.tgz#2c9a829d931c89a6f9c2d3334f6cfb247eb88a18"
+  integrity sha512-JBD9J1CTKH/pwlcJHjZjFtc8czourGCgj4Rzngvt1KKefE12wdoQxzNkVCnC56TMf2nQuoRRNDxDCHg3YqrrYw==
   dependencies:
+    "@babel/runtime" "^7.11.2"
     can-use-dom "^0.1.0"
     lodash-es "^4.17.15"
 
-simplebar@^6.0.0-beta.6:
-  version "6.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-6.0.0-beta.7.tgz#2b87c03ca639d8556abac9d3b9bd74e4cf28755a"
-  integrity sha512-MntIi78fYnbyMRzdLaWZ6IEMqFvcLh54watPF3R/r0iUFdWgF8hKWl7A75QhrU8tLlJC23lfKhBPZiDZXEp/+g==
+simplebar@^6.0.0-beta.8:
+  version "6.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-6.0.0-beta.8.tgz#93e0fc5c4be951a8c8376f70a41cf746fa9de638"
+  integrity sha512-ZG+l8XKZEnt1GBgcHnaNaOqGIfTw6kG3O70Wnu/HDXF+iad7gmwk1fBBFS1dKn8ca/olwlRwq1JJXqSiloorrQ==
   dependencies:
-    "@babel/runtime" "^7.10.2"
+    "@babel/runtime" "^7.11.2"
     can-use-dom "^0.1.0"
-    core-js "^3.6.5"
-    lodash-es "^4.17.15"
-    simplebar-core "^1.0.4"
+    simplebar-core "^1.0.5"
 
 sisteransi@^1.0.4:
   version "1.0.5"
