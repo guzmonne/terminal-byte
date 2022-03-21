@@ -45,7 +45,7 @@
     "simplebar": "^6.0.0-beta.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.11.5",
     "babel-jest": "^26.3.0",
     "cli-real-favicon": "^0.0.8",
